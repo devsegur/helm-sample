@@ -1,13 +1,14 @@
 # How to 
 
 Install kind(microk8s, k3s, cloud sollution).
+
 Install helm3.
 
 helm add repo bitnami
+
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
-repo [bitnami](https://github.com/bitnami/charts/tree/master/bitnami)
-repo (sa)[https://github.com/bitnami/charts/tree/master/bitnami]
+repo of charts [bitnami](https://github.com/bitnami/charts/tree/master/bitnami)
 
 # Usage
 
