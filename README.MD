@@ -29,11 +29,11 @@ repo of charts [bitnami](https://github.com/bitnami/charts/tree/master/bitnami)
 Create prometheus-operator/values.yaml file for configuration.
 
 ```sh
-helm install operator bitnami/kube-prometheus -f prometheus-operator/values.yaml
+	helm install operator bitnami/kube-prometheus -f prometheus-operator/values.yaml
 
-kubectl port-forward alertmanager-operator-kube-prometheus-alertmanager-0 9093:9093
+	kubectl port-forward alertmanager-operator-kube-prometheus-alertmanager-0 9093:9093
 
-kubectl port-forward prometheus-operator-kube-prometheus-prometheus-0 9090:9090
+	kubectl port-forward prometheus-operator-kube-prometheus-prometheus-0 9090:9090
 ```
 
 ## 2. Jenkins
@@ -41,11 +41,11 @@ kubectl port-forward prometheus-operator-kube-prometheus-prometheus-0 9090:9090
 Create jenkins/values.yaml file for configuration.
 
 ```sh
-helm install jenkins bitnami/jenkins -f jenkins/values.yaml
+	helm install jenkins bitnami/jenkins -f jenkins/values.yaml
 
-metadata=$(kubectl get pods -l app.kubernetes.io/instance=jenkins -o jsonpath="{.items[0].metadata.name}")
+	metadata=$(kubectl get pods -l app.kubernetes.io/instance=jenkins -o jsonpath="{.items[0].metadata.name}")
 
-kubectl port-forward $metadata 8080:8080
+	kubectl port-forward $metadata 8080:8080
 ```
 
 ## 3. Our Helm
@@ -53,17 +53,30 @@ kubectl port-forward $metadata 8080:8080
 Create application chart.
 
 ```sh
-helm create application
+	helm create application
 
-helm package .
+	helm package .
 
-helm install application application-0.1.0.tgz
+	helm install application application-0.1.0.tgz
 
-metadata=$(kubectl get pods -l app.kubernetes.io/name=application -o jsonpath="{.items[0].metadata.name}")
+	metadata=$(kubectl get pods -l app.kubernetes.io/name=application -o jsonpath="{.items[0].metadata.name}")
 
-kubectl port-forward $metadata 8080:80
+	kubectl port-forward $metadata 8080:80
 
 ```
 
-## 4. Questions
+## 4. Grafana Operator
+Create grafana/values.yaml file for configuration.
+
+```sh
+	mkdir grafana; touch grafana/values.yaml
+	helm install grafana-op bitnami/grafana-operator -f grafana/values.yaml
+		
+	metadata=$(kubectl get pods -l app.kubernetes.io/name=grafana-operator -o jsonpath="{.items[0].metadata.name}")
+
+	kubectl port-forward $metadata 3000:3000
+
+```
+
+## 5. Questions
 (0 . 0)
