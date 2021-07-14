@@ -66,7 +66,7 @@ kubectl port-forward $metadata 8080:80
 ```
 
 ## 4. Questions
-#    / / / 
-#   (0 . 0)
-#    \ º /
-#
+    / / / 
+   (0 . 0)
+    \ º /
+
