@@ -1,8 +1,18 @@
 # How to 
 
 Install kind(microk8s, k3s, cloud sollution).
+```sh
+	curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+	chmod +x ./kind
+	mv ./kind /some-dir-in-your-PATH/kind
+```
+
 
 Install helm3.
+
+```sh
+	curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+```
 
 helm add repo bitnami
 
